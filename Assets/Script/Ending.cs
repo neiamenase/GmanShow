@@ -1,12 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour {
 
+	GameObject computerPlane;
+	GameObject computerCanvas;
+	GameObject player;
+	Transform playerTransform;
+	Transform planeTransform;
+	GameObject panel;
+	Text[] b;
+	bool isNear = false;
+	bool isScreenOn = false;
+	bool isCollected = false;
+	public float timer;
+
 	// Use this for initialization
 	void Start () {
-<<<<<<< HEAD
 		ChangeScence cs = new ChangeScence();
 		int health = cs.Health;
 		print (health);
@@ -18,14 +31,10 @@ public class Ending : MonoBehaviour {
 
 		updateCanvas (false);
 
-=======
-		
->>>>>>> 46e41d01e3bd738583a27a8b1bb8d5c9c47f2074
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
 		isNearObject ();
 		if (isNear && !isCollected) {
 			if (!isScreenOn) {
@@ -49,8 +58,26 @@ public class Ending : MonoBehaviour {
 
 	void jumpScense(){
 		SceneManager.LoadScene("Explosion");
-=======
-		
->>>>>>> 46e41d01e3bd738583a27a8b1bb8d5c9c47f2074
 	}
+
+	void isNearObject(){
+		float dist = Vector3.Distance (playerTransform.position, planeTransform.position);
+		if (dist < 2.7f) {
+			isNear = true;
+		}
+	}
+
+	void displayComputer(){
+		panel = GameObject.FindGameObjectWithTag ("Panel");
+		b = panel.GetComponentsInChildren<Text> ();
+
+	}
+
+	void updateCanvas(bool active){
+		foreach (Transform child in computerCanvas.transform)
+		{
+			child.gameObject.SetActive(active);
+		}
+	}
+
 }
