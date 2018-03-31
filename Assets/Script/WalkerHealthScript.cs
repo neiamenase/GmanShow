@@ -10,12 +10,17 @@ public class WalkerHealthScript : MonoBehaviour {
 	public float dieCompleteTime = 15f;
 	private float timer;
 	public bool isDead = false;
+    private ParticleSystem WalkerParticleSystem;
 
-	void Start () {
+    void Start () {
 		currentHealth = initialHealth;
 		animator = GetComponent<Animator>();
 		timer = 0;
-	}
+
+        WalkerParticleSystem = GameObject.Find("Walker").GetComponent<ParticleSystem>();
+        WalkerParticleSystem.Stop();
+
+    }
 
 	void Update(){
 		if (isDead) {
@@ -26,6 +31,7 @@ public class WalkerHealthScript : MonoBehaviour {
 
     public void TakeDamage(float amount)
     {
+        WalkerParticleSystem.Play();
         Debug.Log("Current HP:" + amount);
 		currentHealth -= amount;
 		if(currentHealth <= 0f)

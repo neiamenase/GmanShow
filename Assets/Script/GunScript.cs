@@ -11,10 +11,18 @@ public class GunScript : MonoBehaviour {
 	public Camera fpsCam;
 	public float fireRadius = 50f;
 
-	// Use this for initialization
-	void Start () {
+    private ParticleSystem gunParticleSystem;
+
+    public Rect windowRect = new Rect(0, 0, 300, 120);
+
+
+    // Use this for initialization
+    void Start () {
 		shootableMask = LayerMask.GetMask ("Shootable");
-	}
+        gunParticleSystem = GameObject.Find("M4A1 Sopmod").GetComponent<ParticleSystem>();
+        gunParticleSystem.Stop();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,8 +37,9 @@ public class GunScript : MonoBehaviour {
     {
         Debug.Log("EnterShoot");
         RaycastHit hit;
+        gunParticleSystem.Play();
 
-		if(Physics.Raycast(fpsCam.transform.position , fpsCam.transform.forward, out hit,fireRadius , shootableMask))
+        if (Physics.Raycast(fpsCam.transform.position , fpsCam.transform.forward, out hit,fireRadius , shootableMask))
         {
             Debug.Log("Shoot:" + hit.transform.name);
 
