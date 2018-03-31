@@ -5,6 +5,7 @@ Temp/
 Library/
 ProjectSettings/
 UnityPackageManager/
+.vs/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
