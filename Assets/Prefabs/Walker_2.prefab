@@ -1514,8 +1514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e163915889c6c584fb4a13591c79e1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 50
-  currentHealth: 0
+  initialHealth: 1
+  currentHealth: 1
   dieCompleteTime: 0.5
   isDead: 0
 --- !u!135 &135161050234920186
