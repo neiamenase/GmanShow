@@ -17,7 +17,7 @@ public class WalkerHealthScript : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		timer = 0;
 
-        WalkerParticleSystem = GameObject.Find("Walker").GetComponent<ParticleSystem>();
+        WalkerParticleSystem = GetComponent<ParticleSystem>();
         WalkerParticleSystem.Stop();
 
     }
