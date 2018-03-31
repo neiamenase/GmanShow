@@ -20,6 +20,9 @@ public class Ending : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		ChangeScence cs = new ChangeScence();
+		int health = cs.Health;
+		print (health);
 		computerPlane = GameObject.FindGameObjectWithTag ("Plane");
 		computerCanvas = GameObject.FindGameObjectWithTag ("Canvas");
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -46,10 +49,8 @@ public class Ending : MonoBehaviour {
 					updateCanvas (false);
 					isCollected = true;
 				}
-					
 			}
 			timer += Time.deltaTime;
-			print (timer);
 		}
 
 	}

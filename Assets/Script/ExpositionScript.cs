@@ -46,7 +46,7 @@ public class ExpositionScript : MonoBehaviour {
 			t2.color = Color.clear; // for parparing restart
 			t1.color = Color.clear; 
 			// Jump Scense
-			SceneManager.LoadScene("Lab");
+			SceneManager.LoadScene("CountryRoad");
 		}
 		timer += Time.deltaTime;
 	}
