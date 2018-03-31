@@ -9,13 +9,17 @@ public class Boss : MonoBehaviour {
 	Transform playerTransform;
 	UnityEngine.AI.NavMeshAgent nav;
 	Animator animator;
-	public float attackCompleteTime = 0.2f; // zombie attack animation length = 1.13; Thus, half of it => attack successful
-	public float stopCompleteTime = 0; 
+	public float montionCompleteTime = 0.5f; // zombie attack animation length = 1.13; Thus, half of it => attack successful
 	public bool start = false;
-	private float timer;
+	public bool inMotion = false;
+
 	private float stopTimer;
 	private float timeBetweenAttack = 3f;
 	private UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController s;
+	private bool beingAttack;
+
+	public float overrideStopTime = 0f;
+
 
 	PlayerHealth playerHealth;
 
@@ -27,12 +31,11 @@ public class Boss : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		playerHealth = player.GetComponent<PlayerHealth>();
 		rb = player.GetComponent<Rigidbody>();
-		timer = 0f;
 		s = player.GetComponent<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController> ();
 		s.movementSettings.ForwardSpeed = 12f;
 		s.movementSettings.BackwardSpeed = 8f;
-		stopCompleteTime = 0f;
-		stopTimer = 0f;
+		stopTimer = -1f;
+		inMotion = false;
 	}
 	
 	// Update is called once per frame
@@ -42,36 +45,44 @@ public class Boss : MonoBehaviour {
 		}
 		if (!playerHealth.isDead && start) {
 			
-			if (stopTimer >= stopCompleteTime) {
+			if (inMotion) {
+				animator.SetBool ("isPlayerNear", false);
+				nav.SetDestination (transform.position);
+				float stopTime = montionCompleteTime;
+				if (overrideStopTime > 0)
+					stopTime = overrideStopTime;
+				if (stopTimer >= stopTime) {
+					inMotion = false;
+					overrideStopTime = 0f;
+				}
+				stopTimer += Time.deltaTime;
+			} else {
+				stopTimer = 0f;
 				float dist = Vector3.Distance (playerTransform.position, transform.position);
-				if (dist <= nav.stoppingDistance + 1f) {
+
+				if ((dist <= nav.stoppingDistance + 1f) && beingAttack) { // isnear and being attacked
+					nav.SetDestination (transform.position);
+					attackEnd ();
+					animator.SetInteger ("stopType", Random.Range (0, 3));
+					overrideStopTime = 1f;
+					inMotion = true;
+					beingAttack = false;
+
+				} else if (dist <= nav.stoppingDistance + 1f) {
 					nav.SetDestination (transform.position);
 					animator.SetBool ("isPlayerNear", true);
-					animator.SetInteger ("attackType", Random.Range (1, 3));
-					timer += Time.deltaTime;
-					if (timer >= attackCompleteTime + timeBetweenAttack) {
-						attackEnd ();
-						animator.SetInteger ("stopType", Random.Range (1, 2));
-						stopCompleteTime = 2f;
-						stopTimer = 0f;
-						timer = 0f;
-						timeBetweenAttack = 0.5f;
-					}
-
+					animator.SetInteger ("attackType", Random.Range (0, 4));
+					inMotion = true;
+					beingAttack = true;
 				} else {
+					if (beingAttack) {
+						beingAttack = false;
+						animator.SetInteger ("stopType", 0);
+					}
 					nav.SetDestination (playerTransform.transform.position);
 					animator.SetBool ("isPlayerNear", false);
-					timer = 0f;
-					timeBetweenAttack = 0f;
-					stopTimer = 0f;
-					stopCompleteTime = 0f;
 				}
-
-			} else {
-				stopTimer += Time.deltaTime;
 			}
-
-
 		}
 	}
 

@@ -39,7 +39,7 @@ public class BossHealth : MonoBehaviour {
 			currentHealth -= amount;
 			if (currentHealth < 100 && currentHealth % 10 == 0) {
 				animator.SetTrigger ("getHit");
-				bossScript.stopCompleteTime = 1f;
+				bossScript.inMotion = true;
 			}
 			if (currentHealth <= 0f) {
 				animator.SetBool ("isDead", true);
