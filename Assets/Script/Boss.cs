@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour {
 	Transform playerTransform;
 	UnityEngine.AI.NavMeshAgent nav;
 	Animator animator;
-	public float attackCompleteTime = 0.2f; // zombie attack animation length = 1.13; Thus, half of it => attack successful
+	public float attackCompleteTime = 1f; // zombie attack animation length = 1.13; Thus, half of it => attack successful
 	public float stopCompleteTime = 0; 
 	public bool start = false;
 	private float timer;
@@ -45,15 +45,16 @@ public class Boss : MonoBehaviour {
 			if (stopTimer >= stopCompleteTime) {
 				float dist = Vector3.Distance (playerTransform.position, transform.position);
 				if (dist <= nav.stoppingDistance + 1f) {
-					nav.SetDestination (transform.position);
 					animator.SetBool ("isPlayerNear", true);
 					animator.SetInteger ("attackType", Random.Range (1, 3));
 					timer += Time.deltaTime;
 					if (timer >= attackCompleteTime + timeBetweenAttack) {
 						attackEnd ();
 						animator.SetInteger ("stopType", Random.Range (1, 2));
-						stopCompleteTime = 2f;
+
+						stopCompleteTime = 1.2f;
 						stopTimer = 0f;
+
 						timer = 0f;
 						timeBetweenAttack = 0.5f;
 					}
