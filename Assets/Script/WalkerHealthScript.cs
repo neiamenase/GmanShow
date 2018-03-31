@@ -11,7 +11,6 @@ public class WalkerHealthScript : MonoBehaviour {
 	private float timer;
 	public bool isDead = false;
     private ParticleSystem WalkerParticleSystem;
-    //private EnemyManager enemyManager;
 
     void Start () {
 		currentHealth = initialHealth;
@@ -20,7 +19,6 @@ public class WalkerHealthScript : MonoBehaviour {
 
         WalkerParticleSystem = GetComponent<ParticleSystem>();
         WalkerParticleSystem.Stop();
-
 
     }
 
