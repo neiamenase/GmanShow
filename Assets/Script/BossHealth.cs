@@ -43,7 +43,7 @@ public class BossHealth : MonoBehaviour {
 	public void Die()
 	{
 		if (timer == 0) {
-			animator.SetBool ("attackFront", true);
+			animator.SetBool ("gethit", true);
 		}
 		if (timer >= dieCompleteTime) {
 			Destroy (gameObject);

@@ -82,7 +82,6 @@ public class Boss : MonoBehaviour {
 			animator.SetBool ("isPlayerDead", true);
 		} else {
 			rb.velocity = (player.transform.position + transform.forward * 150f);
-			//rb.AddForce (player.transform.position + transform.forward * 200f, ForceMode.Impulse);
 		}
 	}
 }

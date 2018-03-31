@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour {
 
-    public float damage = 10f;
+	public float damage;
     public float range = 100f;
 	int shootableMask;
 
@@ -21,6 +21,7 @@ public class GunScript : MonoBehaviour {
 		shootableMask = LayerMask.GetMask ("Shootable");
         gunParticleSystem = GameObject.Find("M4A1 Sopmod").GetComponent<ParticleSystem>();
         gunParticleSystem.Stop();
+		damage = 1f;
 
     }
 	
@@ -44,11 +45,14 @@ public class GunScript : MonoBehaviour {
             Debug.Log("Shoot:" + hit.transform.name);
 
             WalkerHealthScript target = hit.transform.GetComponent<WalkerHealthScript>();
-            if(target != null)
-            {
-                Debug.Log("Damage:" + damage);
-                target.TakeDamage(damage);
-            }
+			BossHealth boss = hit.transform.GetComponent<BossHealth>();
+			if (target != null) {
+				Debug.Log ("Damage:" + damage);
+				target.TakeDamage (damage);
+			} else if (boss!= null){
+				Debug.Log ("Damage:" + damage);
+				boss.TakeDamage (damage);
+			}
         }
     }
 }
