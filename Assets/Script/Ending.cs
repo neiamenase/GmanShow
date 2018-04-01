@@ -18,11 +18,9 @@ public class Ending : MonoBehaviour {
 	bool isCollected = false;
 	public float timer;
 
+
 	// Use this for initialization
 	void Start () {
-		ChangeScence cs = new ChangeScence();
-		int health = cs.Health;
-		print (health);
 		computerPlane = GameObject.FindGameObjectWithTag ("Plane");
 		computerCanvas = GameObject.FindGameObjectWithTag ("Canvas");
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -46,6 +44,7 @@ public class Ending : MonoBehaviour {
 				if (timer > 2f && timer <= 4f) {
 					b [0].text = "Collected Virus and Vaccine Data";
 				} else if (timer > 4f) {
+					jumpScense ();
 					updateCanvas (false);
 					isCollected = true;
 				}
@@ -57,7 +56,8 @@ public class Ending : MonoBehaviour {
 
 
 	void jumpScense(){
-		SceneManager.LoadScene("Explosion");
+		ChangeScene cs = new ChangeScene();
+		cs.loadNextScene ();
 	}
 
 	void isNearObject(){

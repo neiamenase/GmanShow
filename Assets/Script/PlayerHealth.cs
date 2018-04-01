@@ -20,7 +20,11 @@ public class PlayerHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		currentHealth = startingHealth;
+		ChangeScene cs = new ChangeScene();
+		currentHealth = cs.getHealthData();
+		print (currentHealth);
+
+		//currentHealth = startingHealth;
 		playerMovement = GetComponent<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController>();
 		damageImage = GameObject.Find ("DamageImage").GetComponents<RawImage>()[0];
 		GameObject[] objs = GameObject.FindGameObjectsWithTag ("HP");
@@ -28,6 +32,7 @@ public class PlayerHealth : MonoBehaviour {
 		for (int i = 0; i < objs.Length; i++){
 			HPbars.Add (objs [i].GetComponent<RawImage> ());
 		}
+		HealthChange ();
 	}
 	
 	// Update is called once per frame
@@ -52,7 +57,8 @@ public class PlayerHealth : MonoBehaviour {
 		isDead = true;
 		playerMovement.enabled = false;
 		// should show a dialog asking whether they want to restart
-		//SceneManager.LoadScene("Dead");
+		ChangeScene cs = new ChangeScene();
+		cs.loadDeadScene ();
 	}
 	public void Recover(){
 		currentHealth += 1;
@@ -76,5 +82,8 @@ public class PlayerHealth : MonoBehaviour {
 				HPbars.Find (x => x.name == "HP" + (i + 1)).color = Color.clear;
 			}
 		}
+	}
+	public int getCurrentHealth(){
+		return currentHealth;
 	}
 }

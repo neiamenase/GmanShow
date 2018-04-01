@@ -9,20 +9,30 @@ public class RestartScript : MonoBehaviour {
 	public bool isRestart = false;
 	// Use this for initialization
 	void Start () {
-		Button b = this.GetComponent<Button> ();
-		b.onClick.AddListener(delegate {
-			jumpScense();
-		});
+		print ("testing");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetButtonDown("Return"))
+		{
+			restart();
+		}
+		else if (Input.GetButtonDown("Submit"))
+		{
+			retry();
+		}
 	}
 
 
-	void jumpScense(){
-		SceneManager.LoadScene("Start");
+	void restart(){
+		ChangeScene cs = new ChangeScene();
+		cs.loadStartScene ();
 	}
 
+	void retry(){
+		ChangeScene cs = new ChangeScene();
+		cs.loadRetryScene ();
+
+	}
 }
