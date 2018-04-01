@@ -51,7 +51,7 @@ public class walker : MonoBehaviour {
 						if (hit.collider.gameObject.tag == "Player") {
 							animator.SetBool ("isSeen", true);
 							nav.SetDestination (playerTransform.transform.position);
-							seen = true;
+                            seen = true;
 						}
 					}
 				} 
