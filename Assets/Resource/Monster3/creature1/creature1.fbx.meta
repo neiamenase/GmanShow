@@ -204,6 +204,7 @@ ModelImporter:
     7400030: creature1Die
     7400032: creature1Spawn
     7400034: allAnimations
+    7400036: stayDead
     9500000: //RootNode
     13700000: mesh_1
   externalObjects:
