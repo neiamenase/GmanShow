@@ -34,19 +34,21 @@ public class ExpositionScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (timer < 5f) {
+		if (timer < 4f) {
 			t1.color = Color.Lerp (t1.color, textColor, fadeFactor * Time.deltaTime);
-		}else if(timer < 7f) {
+		}else if(timer < 6f) {
 			t1.color = Color.Lerp (t1.color, Color.clear, fadeFactor * Time.deltaTime);
-		} else if (timer < 12f) {
+		} else if (timer < 10f) {
 			t2.color = Color.Lerp (t2.color, textColor, fadeFactor * Time.deltaTime);
-		} else if (timer < 14f) {
+		} else if (timer < 12f) {
 			t2.color = Color.Lerp (t2.color, Color.clear, fadeFactor * Time.deltaTime);
 		} else {
 			t2.color = Color.clear; // for parparing restart
 			t1.color = Color.clear; 
 			// Jump Scense
-			SceneManager.LoadScene("CountryRoad");
+			ChangeScence cs = new ChangeScence();
+			cs.writeSaveData (10, 0);
+			cs.loadNextScence ();
 		}
 		timer += Time.deltaTime;
 	}
