@@ -46,9 +46,9 @@ public class ExpositionScript : MonoBehaviour {
 			t2.color = Color.clear; // for parparing restart
 			t1.color = Color.clear; 
 			// Jump Scense
-			ChangeScence cs = new ChangeScence();
+			ChangeScene  cs = new ChangeScene();
 			cs.writeSaveData (10, 0);
-			cs.loadNextScence ();
+			cs.loadNextScene ();
 		}
 		timer += Time.deltaTime;
 	}

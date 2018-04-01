@@ -6,11 +6,11 @@ using System.IO;
 using UnityEngine.SceneManagement;
 
 
-public class ChangeScence : MonoBehaviour {
+public class ChangeScene : MonoBehaviour {
 
 	string saveFilePath = Application.dataPath+ "/Data/Save.txt";
 	// health , scence
-	string scencesFilePath = Application.dataPath+ "/Data/ScencesOrder.txt";
+	string scencesFilePath = Application.dataPath+ "/Data/SceneOrder.txt";
 
 	// Use this for initialization
 //	void Start () {
@@ -49,7 +49,7 @@ public class ChangeScence : MonoBehaviour {
 		return data;
 	}
 
-	private string getScenceName (int id){
+	private string getSceneName (int id){
 		int i = 0;
 		StreamReader reader = new StreamReader(scencesFilePath);
 		while(!reader.EndOfStream)
@@ -70,7 +70,7 @@ public class ChangeScence : MonoBehaviour {
 		return int.Parse (readSaveData()[0]);
 	}
 
-	public int getCurrentScenceID(){
+	public int getCurrentSceneID(){
 		return int.Parse (readSaveData()[1]);
 	}
 
@@ -85,33 +85,33 @@ public class ChangeScence : MonoBehaviour {
 	
 	}
 
-	public void loadPreviousScence (){
-		int previous = getCurrentScenceID() - 1;
+	public void loadPreviousScene (){
+		int previous = getCurrentSceneID() - 1;
 		if (previous < 0)
 			previous = 0;
 		
 		writeSaveData (getPlayerHealth(), previous);
-		SceneManager.LoadScene(getScenceName(previous));
+		SceneManager.LoadScene(getSceneName(previous));
 	}
-	public void loadNextScence (){
-		int next = getCurrentScenceID() + 1;
+	public void loadNextScene (){
+		int next = getCurrentSceneID() + 1;
 
 		writeSaveData (getPlayerHealth(), next);
-		SceneManager.LoadScene(getScenceName(next));
+		SceneManager.LoadScene(getSceneName(next));
 	}
 
-	public void loadDeadScence (){
-		writeSaveData (10, getCurrentScenceID());
+	public void loadDeadScene (){
+		writeSaveData (10, getCurrentSceneID());
 		SceneManager.LoadScene("Dead");
 	}
 
-	public void loadStartScence (){
+	public void loadStartScene (){
 		writeSaveData (10, 0);
 		SceneManager.LoadScene("Start");
 	}
 
-	public void loadRetryScence (){
-		SceneManager.LoadScene(getScenceName(getCurrentScenceID()));
+	public void loadRetryScene (){
+		SceneManager.LoadScene(getSceneName(getCurrentSceneID()));
 	}
 
 

@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ChangeScence cs = new ChangeScence();
+		ChangeScene cs = new ChangeScene();
 		currentHealth = cs.getHealthData();
 		print (currentHealth);
 
@@ -57,8 +57,8 @@ public class PlayerHealth : MonoBehaviour {
 		isDead = true;
 		playerMovement.enabled = false;
 		// should show a dialog asking whether they want to restart
-		ChangeScence cs = new ChangeScence();
-		cs.loadDeadScence ();
+		ChangeScene cs = new ChangeScene();
+		cs.loadDeadScene ();
 	}
 	public void Recover(){
 		currentHealth += 1;

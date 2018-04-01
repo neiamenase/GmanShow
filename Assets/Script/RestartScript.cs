@@ -26,13 +26,13 @@ public class RestartScript : MonoBehaviour {
 
 
 	void restart(){
-		ChangeScence cs = new ChangeScence();
-		cs.loadStartScence ();
+		ChangeScene cs = new ChangeScene();
+		cs.loadStartScene ();
 	}
 
 	void retry(){
-		ChangeScence cs = new ChangeScence();
-		cs.loadRetryScence ();
+		ChangeScene cs = new ChangeScene();
+		cs.loadRetryScene ();
 
 	}
 }

@@ -56,8 +56,8 @@ public class Ending : MonoBehaviour {
 
 
 	void jumpScense(){
-		ChangeScence cs = new ChangeScence();
-		cs.loadNextScence ();
+		ChangeScene cs = new ChangeScene();
+		cs.loadNextScene ();
 	}
 
 	void isNearObject(){
