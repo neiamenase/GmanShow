@@ -7,13 +7,20 @@ public class GunScript : MonoBehaviour {
 	public float damage;
     public float range = 100f;
 	int shootableMask;
+	public AudioClip shootSound;
 
 	public Camera fpsCam;
 	public float fireRadius = 50f;
 
     private ParticleSystem gunParticleSystem;
+	private AudioSource source;
+
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+
 
     public Rect windowRect = new Rect(0, 0, 300, 120);
+
 
 
     // Use this for initialization
@@ -22,6 +29,7 @@ public class GunScript : MonoBehaviour {
         gunParticleSystem = GameObject.Find("M4A1 Sopmod").GetComponent<ParticleSystem>();
         gunParticleSystem.Stop();
 		damage = 1f;
+		source = GetComponent<AudioSource> ();
 
     }
 	
@@ -39,6 +47,7 @@ public class GunScript : MonoBehaviour {
         Debug.Log("EnterShoot");
         RaycastHit hit;
         gunParticleSystem.Play();
+		source.PlayOneShot (shootSound, 1f);
 
         if (Physics.Raycast(fpsCam.transform.position , fpsCam.transform.forward, out hit,fireRadius , shootableMask))
         {
@@ -55,4 +64,5 @@ public class GunScript : MonoBehaviour {
 			}
         }
     }
+		
 }
