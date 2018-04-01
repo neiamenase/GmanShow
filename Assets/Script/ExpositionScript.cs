@@ -50,7 +50,6 @@ public class ExpositionScript : MonoBehaviour {
 			cs.writeSaveData (10, 0);
 			cs.loadNextScene ();
 		}
-		print (timer);
 		timer += Time.deltaTime;
 	}
 }
