@@ -34,13 +34,13 @@ public class ExpositionScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (timer < 4f) {
+		if (timer < 3f) {
 			t1.color = Color.Lerp (t1.color, textColor, fadeFactor * Time.deltaTime);
-		}else if(timer < 6f) {
+		}else if(timer < 5f) {
 			t1.color = Color.Lerp (t1.color, Color.clear, fadeFactor * Time.deltaTime);
-		} else if (timer < 10f) {
+		} else if (timer < 8f) {
 			t2.color = Color.Lerp (t2.color, textColor, fadeFactor * Time.deltaTime);
-		} else if (timer < 12f) {
+		} else if (timer < 11f) {
 			t2.color = Color.Lerp (t2.color, Color.clear, fadeFactor * Time.deltaTime);
 		} else {
 			t2.color = Color.clear; // for parparing restart
@@ -50,6 +50,7 @@ public class ExpositionScript : MonoBehaviour {
 			cs.writeSaveData (10, 0);
 			cs.loadNextScene ();
 		}
+		print (timer);
 		timer += Time.deltaTime;
 	}
 }
