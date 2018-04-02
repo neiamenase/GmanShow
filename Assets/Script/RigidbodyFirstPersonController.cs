@@ -264,7 +264,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 		private void OnCollisionEnter(Collision collision) {
 			print (collision.gameObject.name);
-			if (collision.gameObject.name == "NextScene") {
+			if (collision.gameObject.name == "NextScene" ) {
+				
 				ChangeScene cs = new ChangeScene ();
 				cs.loadNextScene ();
 			}

@@ -12,24 +12,6 @@ public class ChangeScene : MonoBehaviour {
 	// health , scene
 	string scenesFilePath = Application.dataPath+ "/Data/SceneOrder.txt";
 
-	// Use this for initialization
-//	void Start () {
-//		
-//	}
-//	
-//	// Update is called once per frame
-//	void Update () {
-//		
-//	}
-//	private int health = 30;
-//	public int Health{
-//	 	get{
-//			return health;
-//		}
-//		set{
-//			health = value;
-//		}
-//	}
 
 	public void writeSaveData(int health, int sceneID){
 		StreamWriter writer = new StreamWriter (saveFilePath);
