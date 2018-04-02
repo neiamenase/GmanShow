@@ -255,17 +255,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
-		private void OnCollisionEnter(Collision collision) {
-			print (collision.gameObject.name);
-			if (collision.gameObject.name == "NextScene") {
-				ChangeScene cs = new ChangeScene ();
-				cs.loadNextScene ();
-			}
-			if (collision.gameObject.name == "PreviousScene") {
-				ChangeScene cs = new ChangeScene ();
-				cs.loadPreviousScene ();
-			}
 
-		}
     }
 }

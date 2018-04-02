@@ -33,7 +33,11 @@ public class ExpositionScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		if (Input.GetButtonDown("Menu"))
+		{
+			ChangeScene  cs = new ChangeScene();
+			cs.loadMenuScene ();
+		}
 		if (timer < 3f) {
 			t1.color = Color.Lerp (t1.color, textColor, fadeFactor * Time.deltaTime);
 		}else if(timer < 5f) {
