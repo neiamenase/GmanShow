@@ -9,7 +9,7 @@ public class RestartScript : MonoBehaviour {
 	public bool isRestart = false;
 	// Use this for initialization
 	void Start () {
-		print ("testing");
+
 	}
 	
 	// Update is called once per frame
