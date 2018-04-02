@@ -80,9 +80,14 @@ public class LightingEffect : MonoBehaviour {
 		print (collision.gameObject.name);
 		if (collision.gameObject.name == "Player_2" ) {
 			onPlane = true;
-			GameObject t= GameObject.FindGameObjectWithTag("Dialogue");
-			t.GetComponentsInChildren<Text>()[0].text = "Press O to restart power generator.";
+			GameObject.FindGameObjectWithTag("Dialogue").GetComponentsInChildren<Text>()[0].text = "Press O to restart power generator.";
 
+		}
+	}
+	private void OnCollisionExit(Collision collision){
+		if (collision.gameObject.name == "Player_2") {
+			onPlane = false;
+			GameObject.FindGameObjectWithTag ("Dialogue").GetComponentsInChildren<Text> () [0].text = "";
 		}
 	}
 }
