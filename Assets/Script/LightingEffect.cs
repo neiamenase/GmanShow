@@ -21,7 +21,7 @@ public class LightingEffect : MonoBehaviour {
 		timer = 0f;
 		lightOnTime = 0.3f;
 		lightOffTime = 1.5f;
-		//setColor ();
+
 		lightEffect (false);
 
 	}
@@ -52,6 +52,8 @@ public class LightingEffect : MonoBehaviour {
 			timer += Time.deltaTime;
 		} else if (restartGenerator == 1){
 			lightEffect (true);
+			setDirectionalLight ();
+			GameObject.Find ("electronicDoor").SetActive (false);
 			restartGenerator = 2;
 		}
 
@@ -65,10 +67,11 @@ public class LightingEffect : MonoBehaviour {
 	
 	}
 
-	void setColor(){
+	void setDirectionalLight(){
 		for (int i = 0; i < spotlights.Length; i++) {
 			Light l = spotlights [i].GetComponent<Light> ();
-			l.color = new Color32(127,255,0,128);
+			l.type = LightType.Directional;
+			l.intensity = 0.5f;
 		}
 
 	}
