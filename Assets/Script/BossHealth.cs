@@ -13,6 +13,7 @@ public class BossHealth : MonoBehaviour {
 	Boss bossScript;
 	//private ParticleSystem WalkerParticleSystem;
 	private bool isInDanger;
+	OpenBoss openScript;
 
 	void Start () {
 		currentHealth = initialHealth;
@@ -22,6 +23,7 @@ public class BossHealth : MonoBehaviour {
 //		WalkerParticleSystem = GameObject.Find("Walker").GetComponent<ParticleSystem>();
 //		WalkerParticleSystem.Stop();
 		isInDanger = false;
+		openScript = GameObject.Find ("Computer").GetComponent<OpenBoss>();
 
 	}
 
@@ -58,6 +60,7 @@ public class BossHealth : MonoBehaviour {
 				bossScript.overrideStopTime = 1.7f;
 				animator.SetBool ("isDead", true);
 				isDead = true;
+				openScript.status = 2;
 			}
 		}
 	}
