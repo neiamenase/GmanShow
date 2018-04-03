@@ -5024,6 +5024,11 @@ Prefab:
       propertyPath: start
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 136549669274595420, guid: 3a2125f0eae754506b7e1d8547a6b5e5,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a2125f0eae754506b7e1d8547a6b5e5, type: 2}
   m_IsPrefabParent: 0
@@ -14162,7 +14167,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 5
-  m_Range: 10
+  m_Range: 30
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
