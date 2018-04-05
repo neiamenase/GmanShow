@@ -46,7 +46,7 @@ public class ChangeScene : MonoBehaviour {
 		return "Start";
 	}
 
-	public int getSceneID (string Name){
+	public int getCurrentSceneID (string Name){
 		int i = 0;
 		StreamReader reader = new StreamReader(scenesFilePath);
 		while(!reader.EndOfStream)
@@ -65,7 +65,7 @@ public class ChangeScene : MonoBehaviour {
 		return int.Parse (readSaveData()[0]);
 	}
 
-	public int getCurrentSceneID(){
+	public int getSceneID(){
 		return int.Parse (readSaveData()[1]);
 	}
 
@@ -81,7 +81,7 @@ public class ChangeScene : MonoBehaviour {
 	}
 
 	public void loadPreviousScene (){
-		int previous = getCurrentSceneID() - 1;
+		int previous = getSceneID() - 1;
 		if (previous < 0)
 			previous = 0;
 		
@@ -90,7 +90,7 @@ public class ChangeScene : MonoBehaviour {
 	}
 	public void loadNextScene (){
 
-			int next = getCurrentSceneID () + 1;
+			int next = getSceneID () + 1;
 
 			writeSaveData (getPlayerHealth (), next);
 			SceneManager.LoadScene (getSceneName (next));
@@ -98,7 +98,7 @@ public class ChangeScene : MonoBehaviour {
 	}
 
 	public void loadDeadScene (){
-		writeSaveData (10, getCurrentSceneID());
+		writeSaveData (10, getSceneID());
 		SceneManager.LoadScene("Dead");
 	}
 
@@ -108,7 +108,7 @@ public class ChangeScene : MonoBehaviour {
 	}
 
 	public void loadRetryScene (){
-		SceneManager.LoadScene(getSceneName(getCurrentSceneID()));
+		SceneManager.LoadScene(getSceneName(getSceneID()));
 	}
 
 	public void loadMenuScene (){

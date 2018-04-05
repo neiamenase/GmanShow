@@ -7,6 +7,7 @@ public class OpenBoss : MonoBehaviour {
 
 	Boss bossScript;
 	GameObject boss;
+	NextScene next;
 	Text dialog;
 	public int status;
 	bool onPlane;
@@ -20,8 +21,9 @@ public class OpenBoss : MonoBehaviour {
 		status = 0;
 		onPlane = false;
 		boss.SetActive (false);
-		//next = GameObject.Find("NextScene").GetComponent<ChangeScene>();
-		//next.allowJump = false;
+
+		next = GameObject.Find("NextScene").GetComponent<NextScene>();
+		next.enable = false;
 	}
 
 	void Update(){
@@ -53,7 +55,7 @@ public class OpenBoss : MonoBehaviour {
 				break;
 			case 2:
 				dialog.text = "Door unlocked";
-				//next.allowJump = true;
+				next.enable = true;
 				break;
 			}
 		}

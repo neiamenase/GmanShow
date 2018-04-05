@@ -14,7 +14,7 @@ public class RestartScript : MonoBehaviour {
 
 		Text text = this.GetComponentInChildren<Text>();
 		ChangeScene cs = new ChangeScene();
-		if (cs.getSceneName(cs.getCurrentSceneID()) == "Explosion") {
+		if (cs.getSceneName(cs.getSceneID()) == "Explosion") {
 			isWin = true;
 			text.text = "but you have managed to compelete the mission...";
 		} else {

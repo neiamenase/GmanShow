@@ -262,18 +262,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jumping = false;
             }
         }
-		private void OnCollisionEnter(Collision collision) {
-			print (collision.gameObject.name);
-			if (collision.gameObject.name == "NextScene" ) {
-				
-				ChangeScene cs = new ChangeScene ();
-				cs.loadNextScene ();
-			}
-			if (collision.gameObject.name == "PreviousScene") {
-				ChangeScene cs = new ChangeScene ();
-				cs.loadPreviousScene ();
-			}
 
-		}
     }
 }

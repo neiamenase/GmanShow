@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-using  UnityEngine.EventSystems;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 
 public class Menu : MonoBehaviour {
@@ -27,9 +28,9 @@ public class Menu : MonoBehaviour {
 	private void loadScene(){
 		Text t = EventSystem.current.currentSelectedGameObject.GetComponentsInChildren<Text>()[0];
 		ChangeScene cs = new ChangeScene ();
-		int id = cs.getSceneID (t.text);
-		cs.writeSaveData (10, id-1);
-		cs.loadNextScene ();
+		cs.writeSaveData (10, cs.getCurrentSceneID(t.text));
+		SceneManager.LoadScene(t.text);
+
 		
 	}
 
