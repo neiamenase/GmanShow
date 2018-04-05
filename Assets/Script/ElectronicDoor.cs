@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class ElectronicDoor : MonoBehaviour {
 
+	Text dialogue;
 	// Use this for initialization
 	void Start () {
-		
+		dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponentsInChildren<Text> () [0];
 	}
 	
 	// Update is called once per frame
@@ -17,8 +18,8 @@ public class ElectronicDoor : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision) {
 		print (collision.gameObject.name);
-		if (collision.gameObject.name == "Player_2" ) {
-			GameObject.FindGameObjectWithTag("Dialogue").GetComponentsInChildren<Text>()[0].text = "It is an electronic door. \nPlease restart power generator.";
+		if (collision.gameObject.tag == "Player" ) {
+			dialogue.text = "It is an electronic door. \nPlease restart power generator.";
 
 		}
 	}

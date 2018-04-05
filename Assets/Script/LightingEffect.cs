@@ -11,6 +11,7 @@ public class LightingEffect : MonoBehaviour {
 	public float lightOffTime;
 	public int restartGenerator = 0;
 	private bool onPlane = false;
+	Text dialogue;
 
 
 
@@ -23,6 +24,7 @@ public class LightingEffect : MonoBehaviour {
 		lightOffTime = 1.5f;
 
 		lightEffect (false);
+		dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponentsInChildren<Text> () [0];
 
 	}
 	
@@ -33,7 +35,7 @@ public class LightingEffect : MonoBehaviour {
 			if (Input.GetButtonDown("Submit"))
 			{
 				restartGenerator = 1;
-				GameObject.FindGameObjectWithTag("Dialogue").GetComponentsInChildren<Text>()[0].text = "";
+				dialogue.text = "";
 
 			}
 		}
@@ -71,7 +73,7 @@ public class LightingEffect : MonoBehaviour {
 		for (int i = 0; i < spotlights.Length; i++) {
 			Light l = spotlights [i].GetComponent<Light> ();
 			l.type = LightType.Directional;
-			l.intensity = 0.5f;
+			l.intensity = 0.3f;
 		}
 
 	}
@@ -81,16 +83,16 @@ public class LightingEffect : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision) {
 		print (collision.gameObject.name);
-		if (collision.gameObject.name == "Player_2" ) {
+		if (collision.gameObject.tag == "Player" ) {
 			onPlane = true;
-			GameObject.FindGameObjectWithTag("Dialogue").GetComponentsInChildren<Text>()[0].text = "Press O to restart power generator.";
+			dialogue.text = "Press O to restart power generator.";
 
 		}
 	}
 	private void OnCollisionExit(Collision collision){
-		if (collision.gameObject.name == "Player_2") {
+		if (collision.gameObject.tag == "Player") {
 			onPlane = false;
-			GameObject.FindGameObjectWithTag ("Dialogue").GetComponentsInChildren<Text> () [0].text = "";
+			dialogue.text = "";
 		}
 	}
 }

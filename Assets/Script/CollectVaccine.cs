@@ -6,32 +6,45 @@ using UnityEngine.UI;
 
 public class CollectVaccine : MonoBehaviour {
 
-	GameObject canvas;
-	GameObject panel;
-	Text[] b;
-	bool isScreenOn = false;
-	public float timer;
+
+	int collectingStatus = 0;
+	bool onPlane = false;
+	float second;
+	int loadingTime;
+
+	Text dialogue;
 
 
 	// Use this for initialization
 	void Start () {
-		canvas = GameObject.FindGameObjectWithTag ("Canvas");
-		updateCanvas (false);
-		timer = 0f;
+		dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponentsInChildren<Text> () [0];
 
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (isScreenOn) {
-			if (timer > 2f && timer <= 4f) {
-				b [0].text = "Collected Virus and Vaccine Data";
-			} else if (timer > 4f) {
-				updateCanvas (false);
-				isScreenOn = false;
+		if (onPlane) {
+			if (collectingStatus == 0) {
+				dialogue.text = "Loading... \nDon't move.\n";
+				collectingStatus = 1;
+				loadingTime = 5;
+			} else if (collectingStatus == 1) {
+				second += Time.deltaTime;
+				if (second >=1) {
+					if (loadingTime > 0) {
+						dialogue.text += loadingTime + "... ";
+					} else if (loadingTime == 0) {
+						dialogue.text = "Collected Virus and Vaccine Data.";
+					} else {
+						dialogue.text = "end??";
+						collectingStatus = 2;
+					}
+					second = 0;
+					loadingTime--;
+				}
 			}
-			timer += Time.deltaTime;
 		}
+
 	}
 
 
@@ -41,26 +54,21 @@ public class CollectVaccine : MonoBehaviour {
 	}
 
 
-	void displayComputer(){
-		panel = GameObject.FindGameObjectWithTag ("Panel");
-		b = panel.GetComponentsInChildren<Text> ();
-
-	}
-
-	void updateCanvas(bool active){
-		foreach (Transform child in canvas.transform)
-		{
-			child.gameObject.SetActive(active);
-		}
-	}
 
 	private void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.name == "Player_2") {
-			isScreenOn = true;
-			updateCanvas (true);
-			displayComputer ();
+		if (collision.gameObject.tag == "Player") {
+			onPlane = true;
 		}
 
 	}
+	private void OnCollisionExit(Collision collision) {
+		if (collision.gameObject.tag == "Player") {
+			onPlane = false;
+			if (collectingStatus != 2) {
+				dialogue.text = "";
+				collectingStatus = 0;
+			}
+		}
 
+	}
 }
