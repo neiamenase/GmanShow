@@ -11,7 +11,7 @@ public class BossHealth : MonoBehaviour {
 	private float timer;
 	public bool isDead = false;
 	Boss bossScript;
-	//private ParticleSystem WalkerParticleSystem;
+	private ParticleSystem particleSystem;
 	private bool isInDanger;
 	OpenBoss openScript;
 
@@ -20,8 +20,8 @@ public class BossHealth : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		timer = 0;
 		bossScript = GetComponent<Boss> ();
-//		WalkerParticleSystem = GameObject.Find("Walker").GetComponent<ParticleSystem>();
-//		WalkerParticleSystem.Stop();
+		particleSystem = GetComponent<ParticleSystem>();
+		particleSystem.Stop();
 		isInDanger = false;
 		openScript = GameObject.Find ("Computer").GetComponent<OpenBoss>();
 
@@ -36,7 +36,7 @@ public class BossHealth : MonoBehaviour {
 
 	public void TakeDamage(float amount)
 	{
-		//WalkerParticleSystem.Play();
+		particleSystem.Play();
 		if (bossScript.isStart) {
 			Debug.Log ("Current HP:" + amount);
 			currentHealth -= amount;
@@ -49,7 +49,7 @@ public class BossHealth : MonoBehaviour {
 
 			if (!isInDanger && currentHealth < 50) {
 				animator.SetBool ("isInDanger", true);
-				bossScript.nav.speed = 10f;
+				bossScript.nav.speed = 15f;
 				isInDanger = true;
 			}
 

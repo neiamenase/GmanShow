@@ -69,13 +69,13 @@ public class Boss : MonoBehaviour {
 			} else {
 				stopTimer = 0f;
 				float dist = Vector3.Distance (playerTransform.position, transform.position);
-				bool isNear = (dist <= nav.stoppingDistance + 1.5f);
+				bool isNear = (dist <= nav.stoppingDistance + 0.5f);
 
 				if (isNear && beingAttack) { // isnear and being attacked
 					nav.SetDestination (transform.position);
 					attackEnd ();
 					animator.SetInteger ("stopType", Random.Range (1, 3));
-					overrideStopTime = 1f;
+					overrideStopTime = 1.5f;
 					inMotion = true;
 					beingAttack = false;
 
@@ -99,7 +99,7 @@ public class Boss : MonoBehaviour {
 					if (animator.GetBool ("isPlayerNear")) {
 						animator.SetBool ("isPlayerNear", false);
 						animator.SetInteger ("stopType", Random.Range (1, 3));
-						overrideStopTime = 1f;
+						overrideStopTime = 1.5f;
 						inMotion = true;
 					} else {
 						nav.SetDestination (playerTransform.transform.position);
