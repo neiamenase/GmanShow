@@ -3,36 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OpenBoss : MonoBehaviour {
+public class onCollisionEnterScript : MonoBehaviour {
 
-	Boss bossScript;
-	GameObject boss;
 	Text dialog;
-	public int status;
 	bool onPlane;
-	//ChangeScene next;
 
+	public int status;
+	public string status0Text;
+	public string status1Text;
+	public string status2Text;
+
+
+	public bool enableStatus1;
+	public bool enableStatus2;
 
 	void Start(){
-		boss = GameObject.Find("Boss");
-		bossScript = boss.GetComponent<Boss> ();
 		dialog = GameObject.FindGameObjectWithTag ("Dialogue").GetComponentsInChildren<Text>()[0];
 		status = 0;
 		onPlane = false;
-		boss.SetActive (false);
-		//next = GameObject.Find("NextScene").GetComponent<ChangeScene>();
-		//next.allowJump = false;
+		enableStatus1 = false;
+
 	}
 
 	void Update(){
-		if (status < 2) {
-			//	next.allowJump = false;
-		}
 		if (onPlane && status == 0) {
 			if (Input.GetButtonDown("Submit"))
 			{
-				boss.SetActive (true);
-				bossScript.start = true;
 				status = 1;
 			}
 		}
@@ -46,14 +42,17 @@ public class OpenBoss : MonoBehaviour {
 			onPlane = true;
 			switch (status) {
 			case 0:
-				dialog.text = "Press O to unseal ALL locks.";
+				dialog.text = status0Text;
 				break;
 			case 1:
-				dialog.text = "Contamination found in room. Auto-lock applied";
+				if (enableStatus1) {
+					dialog.text = status1Text;
+				}
 				break;
 			case 2:
-				dialog.text = "Door unlocked";
-				//next.allowJump = true;
+				if (enableStatus2) {
+					dialog.text = status2Text;
+				}
 				break;
 			}
 		}

@@ -5,50 +5,65 @@ using UnityEngine.UI;
 
 
 public class CollectVaccine : MonoBehaviour {
+	public float timeRemaining = 30f;
 
 
-	int collectingStatus = 0;
 	bool onPlane = false;
-	float second;
+	float waitSec;
 	int loadingTime;
-
 	Text dialogue;
+	int status;
+	int temp;
+
 
 
 	// Use this for initialization
 	void Start () {
-		dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponentsInChildren<Text> () [0];
-
+		dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponentInChildren<Text> ();
+		status = 0;
+		waitSec = 0f;
+		temp = 0;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (onPlane) {
-			if (collectingStatus == 0) {
-				dialogue.text = "Loading... \nDon't move.\n";
-				collectingStatus = 1;
-				loadingTime = 5;
-			} else if (collectingStatus == 1) {
-				second += Time.deltaTime;
-				if (second >=1) {
-					if (loadingTime > 0) {
-						dialogue.text += loadingTime + "... ";
-					} else if (loadingTime == 0) {
-						dialogue.text = "Collected Virus and Vaccine Data.";
-					} else {
-						dialogue.text = "end??";
-						collectingStatus = 2;
+			if (status ==0) {
+				dialogue.text = "Vaccine and Virus Data Found.\nInitalizing download process.";
+				status = 1;
+			} else {
+				if (waitSec >= 5f) {
+					status = 2;
+					dialogue.text = "Downloading... \nPlease stay near the console.\nTIME: " + System.Math.Round (timeRemaining, 2);
+					timeRemaining = timeRemaining - Time.deltaTime;
+
+					if (timeRemaining < 0f) {
+						jumpScense ();
 					}
-					second = 0;
-					loadingTime--;
+				} else {
+					waitSec = waitSec + Time.deltaTime;
+					if ((waitSec > 1 && temp == 0) ||
+						(waitSec > 2 && temp == 1) ||
+						(waitSec > 3 && temp == 2) ||
+						(waitSec > 4 && temp == 3) ||
+						(waitSec > 5 && temp == 4)
+					) {
+						dialogue.text += ".";
+						temp++;
+					}
 				}
+
+			}
+
+		} else {
+			if (status ==2 && timeRemaining > 0f) {
+				dialogue.text = "Transmitting Process Paused.\nTIME: " + System.Math.Round (timeRemaining, 2);
 			}
 		}
-
 	}
 
 
-	void jumpScense(){
+	void jumpScense() {
 		ChangeScene cs = new ChangeScene();
 		cs.loadNextScene ();
 	}
@@ -59,15 +74,11 @@ public class CollectVaccine : MonoBehaviour {
 		if (collision.gameObject.tag == "Player") {
 			onPlane = true;
 		}
-
 	}
+
 	private void OnCollisionExit(Collision collision) {
 		if (collision.gameObject.tag == "Player") {
 			onPlane = false;
-			if (collectingStatus != 2) {
-				dialogue.text = "";
-				collectingStatus = 0;
-			}
 		}
 
 	}

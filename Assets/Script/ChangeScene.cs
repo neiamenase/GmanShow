@@ -89,10 +89,12 @@ public class ChangeScene : MonoBehaviour {
 		SceneManager.LoadScene(getSceneName(previous));
 	}
 	public void loadNextScene (){
-		int next = getCurrentSceneID() + 1;
 
-		writeSaveData (getPlayerHealth(), next);
-		SceneManager.LoadScene(getSceneName(next));
+			int next = getCurrentSceneID () + 1;
+
+			writeSaveData (getPlayerHealth (), next);
+			SceneManager.LoadScene (getSceneName (next));
+
 	}
 
 	public void loadDeadScene (){
