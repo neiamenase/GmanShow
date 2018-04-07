@@ -6,32 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
 
     public GameObject enemy;                // The enemy prefab to be spawned.
-<<<<<<< HEAD
-    public float spawnTime = 10f;            // How long between each spawn.
-    public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
-    public int maxEnemy = 10;
 
-    void Start()
-    {
-        InvokeRepeating("Spawn", spawnTime, spawnTime);
-    }
-
-    // Update is called once per frame
-    void Spawn()
-    {
-        int currentEnemy = 0;
-        currentEnemy = GameObject.FindGameObjectsWithTag("Enermy").Length;
-        if (currentEnemy > maxEnemy)
-            return;
-
-        int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-
-        enemy.GetComponent<walker>().seen = true;
-
-        // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-        Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        currentEnemy++;
-=======
     public float spawnTime = 0.05f;            // How long between each spawn.
     public GameObject[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
     public int maxEnemy = 10;
@@ -70,6 +45,6 @@ public class EnemyManager : MonoBehaviour
 		Instantiate(enemy, spawnPoints[spawnPointIndex].transform.position, spawnPoints[spawnPointIndex].transform.rotation);
         currentEnemy++;
 
->>>>>>> 6ed0ff01fdb6d16bb1335fb250a790ae9cdd8c4e
+
     }
 }
