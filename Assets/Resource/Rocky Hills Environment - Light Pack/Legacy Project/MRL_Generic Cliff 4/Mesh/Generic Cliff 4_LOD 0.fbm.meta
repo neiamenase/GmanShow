@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: 9040484e5dd04934eb16cbbcd6511369
 folderAsset: yes
+<<<<<<< HEAD:Assets/Resource/Rocky Hills Environment - Light Pack/Legacy Project/MRL_Generic Cliff 4/Mesh/Generic Cliff 4_LOD 0.fbm.meta
 timeCreated: 1522492351
+=======
+timeCreated: 1522800828
+>>>>>>> 6ed0ff01fdb6d16bb1335fb250a790ae9cdd8c4e:Assets/Resource/Toby Fredson/Rocky Hills Environment - Light Pack/Legacy Project/MRL_Generic Cliff 4/Mesh/Generic Cliff 4_LOD 0.fbm.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

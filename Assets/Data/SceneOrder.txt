@@ -1,6 +1,9 @@
 Start
 CountryRoad
+City
 Dark Lab With Lake
 Lab
-End
-Dead
+Lighting Room
+Last Room
+Vaccine
+Explosion

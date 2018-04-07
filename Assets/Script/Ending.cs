@@ -1,83 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour {
 
-	GameObject computerPlane;
-	GameObject computerCanvas;
-	GameObject player;
-	Transform playerTransform;
-	Transform planeTransform;
-	GameObject panel;
-	Text[] b;
-	bool isNear = false;
-	bool isScreenOn = false;
-	bool isCollected = false;
+	GameObject endingText;
+	GameObject explosion; 
 	public float timer;
-
 
 	// Use this for initialization
 	void Start () {
-		computerPlane = GameObject.FindGameObjectWithTag ("Plane");
-		computerCanvas = GameObject.FindGameObjectWithTag ("Canvas");
-		player = GameObject.FindGameObjectWithTag ("Player");
-		playerTransform = player.transform;
-		planeTransform = computerPlane.transform;
-
-		updateCanvas (false);
-
+		//endingText = this.GetComponentsInChildren<Texture> ();
+		InvokeRepeating("Spawn", 0.4f, 0.4f);
+		explosion = GameObject.FindGameObjectWithTag ("Explosion");
+		timer = 0f;
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
-		isNearObject ();
-		if (isNear && !isCollected) {
-			if (!isScreenOn) {
-				isScreenOn = true;
-				updateCanvas (true);
-				displayComputer ();
-				timer = 0f;
-			} else {
-				if (timer > 2f && timer <= 4f) {
-					b [0].text = "Collected Virus and Vaccine Data";
-				} else if (timer > 4f) {
-					jumpScense ();
-					updateCanvas (false);
-					isCollected = true;
-				}
-			}
-			timer += Time.deltaTime;
+		if (timer >= 6f) {
+			ChangeScene cs = new ChangeScene();
+			cs.loadDeadScene ();
 		}
-
+		timer += Time.deltaTime;
 	}
 
 
-	void jumpScense(){
-		ChangeScene cs = new ChangeScene();
-		cs.loadNextScene ();
+	void Spawn()
+	{
+		Instantiate( explosion , new Vector3(Random.Range(-10,50), 4f, Random.Range(-10, 50)), new  Quaternion (0,0,0,0));
 	}
-
-	void isNearObject(){
-		float dist = Vector3.Distance (playerTransform.position, planeTransform.position);
-		if (dist < 2.7f) {
-			isNear = true;
-		}
-	}
-
-	void displayComputer(){
-		panel = GameObject.FindGameObjectWithTag ("Panel");
-		b = panel.GetComponentsInChildren<Text> ();
-
-	}
-
-	void updateCanvas(bool active){
-		foreach (Transform child in computerCanvas.transform)
-		{
-			child.gameObject.SetActive(active);
-		}
-	}
-
 }

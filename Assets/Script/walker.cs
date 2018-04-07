@@ -75,7 +75,7 @@ public class walker : MonoBehaviour {
 					timer += Time.deltaTime;
 				}
 			} else {
-
+				animator.SetBool ("isSeen", true);
 				nav.SetDestination (playerTransform.transform.position);
 				float dist = Vector3.Distance (playerTransform.position, transform.position);
 				if (dist <= nav.stoppingDistance + 1.2f) {

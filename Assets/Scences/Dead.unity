@@ -245,7 +245,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Continue?    Yes  No\n                       O    X  "
+  m_Text: Continue?    Yes(O)  No(X)
 --- !u!222 &391515647
 CanvasRenderer:
   m_ObjectHideFlags: 0

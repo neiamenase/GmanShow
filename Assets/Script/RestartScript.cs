@@ -6,21 +6,36 @@ using UnityEngine.SceneManagement;
 
 public class RestartScript : MonoBehaviour {
 
-	public bool isRestart = false;
+	public bool isWin = false;
+
+
 	// Use this for initialization
 	void Start () {
-		print ("testing");
+
+		Text text = this.GetComponentInChildren<Text>();
+		ChangeScene cs = new ChangeScene();
+		if (cs.getSceneName(cs.getSceneID()) == "Explosion") {
+			isWin = true;
+			text.text = "but you have managed to compelete the mission...";
+		} else {
+			isWin = false;
+			text.text = "Continue?    Yes(O)  No(X)";
+		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown("Return"))
 		{
-			restart();
+			restart ();
 		}
 		else if (Input.GetButtonDown("Submit"))
 		{
-			retry();
+			if (!isWin)
+				retry ();
+			else
+				restart ();
 		}
 	}
 

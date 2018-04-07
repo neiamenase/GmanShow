@@ -9,33 +9,14 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour {
 
 	string saveFilePath = Application.dataPath+ "/Data/Save.txt";
-	// health , scence
-	string scencesFilePath = Application.dataPath+ "/Data/SceneOrder.txt";
+	// health , scene
+	string scenesFilePath = Application.dataPath+ "/Data/SceneOrder.txt";
 
-	// Use this for initialization
-//	void Start () {
-//		
-//	}
-//	
-//	// Update is called once per frame
-//	void Update () {
-//		
-//	}
-//	private int health = 30;
-//	public int Health{
-//	 	get{
-//			return health;
-//		}
-//		set{
-//			health = value;
-//		}
-//	}
 
-	public void writeSaveData(int health, int scenceID){
+	public void writeSaveData(int health, int sceneID){
 		StreamWriter writer = new StreamWriter (saveFilePath);
-		writer.Write(health.ToString() + "," + scenceID.ToString());
+		writer.Write(health.ToString() + "," + sceneID.ToString());
 		writer.Close ();
-
 	}
 
 	public string[] readSaveData(){
@@ -49,15 +30,15 @@ public class ChangeScene : MonoBehaviour {
 		return data;
 	}
 
-	private string getSceneName (int id){
+	public string getSceneName (int id){
 		int i = 0;
-		StreamReader reader = new StreamReader(scencesFilePath);
+		StreamReader reader = new StreamReader(scenesFilePath);
 		while(!reader.EndOfStream)
 		{
-			string scenceName = reader.ReadLine ();
+			string sceneName = reader.ReadLine ();
 			if (i == id) {
-				print (i + "   " + scenceName);
-				return scenceName;
+				print (i + "   " + sceneName);
+				return sceneName;
 			}
 			i++;
 		}
@@ -65,12 +46,26 @@ public class ChangeScene : MonoBehaviour {
 		return "Start";
 	}
 
+	public int getCurrentSceneID (string Name){
+		int i = 0;
+		StreamReader reader = new StreamReader(scenesFilePath);
+		while(!reader.EndOfStream)
+		{
+			string sceneName = reader.ReadLine ();
+			if (sceneName == Name) {
+				return i;
+			}
+			i++;
+		}
+		reader.Close( );  
+		return 0;
+	}
 	public int getHealthData(){
 
 		return int.Parse (readSaveData()[0]);
 	}
 
-	public int getCurrentSceneID(){
+	public int getSceneID(){
 		return int.Parse (readSaveData()[1]);
 	}
 
@@ -86,7 +81,7 @@ public class ChangeScene : MonoBehaviour {
 	}
 
 	public void loadPreviousScene (){
-		int previous = getCurrentSceneID() - 1;
+		int previous = getSceneID() - 1;
 		if (previous < 0)
 			previous = 0;
 		
@@ -94,14 +89,16 @@ public class ChangeScene : MonoBehaviour {
 		SceneManager.LoadScene(getSceneName(previous));
 	}
 	public void loadNextScene (){
-		int next = getCurrentSceneID() + 1;
 
-		writeSaveData (getPlayerHealth(), next);
-		SceneManager.LoadScene(getSceneName(next));
+			int next = getSceneID () + 1;
+
+			writeSaveData (getPlayerHealth (), next);
+			SceneManager.LoadScene (getSceneName (next));
+
 	}
 
 	public void loadDeadScene (){
-		writeSaveData (10, getCurrentSceneID());
+		writeSaveData (10, getSceneID());
 		SceneManager.LoadScene("Dead");
 	}
 
@@ -111,9 +108,12 @@ public class ChangeScene : MonoBehaviour {
 	}
 
 	public void loadRetryScene (){
-		SceneManager.LoadScene(getSceneName(getCurrentSceneID()));
+		SceneManager.LoadScene(getSceneName(getSceneID()));
 	}
 
+	public void loadMenuScene (){
+		SceneManager.LoadScene("Menu");
+	}
 
 }
 
