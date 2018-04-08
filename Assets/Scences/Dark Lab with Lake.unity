@@ -4917,6 +4917,11 @@ Prefab:
       propertyPath: movementSettings.ForwardSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 108963944758490892, guid: bdb02e09a4db8a341ad6440d6ed3642d,
+        type: 2}
+      propertyPath: m_Intensity
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bdb02e09a4db8a341ad6440d6ed3642d, type: 2}
   m_IsPrefabParent: 0
