@@ -54,7 +54,7 @@ public class BossHealth : MonoBehaviour {
 			}
 
 
-			if (currentHealth <= 0f && !isDead) {
+			if (currentHealth <= 0f) {
 				animator.SetTrigger ("getHit");
 				bossScript.inMotion = true;
 				bossScript.overrideStopTime = 1.7f;

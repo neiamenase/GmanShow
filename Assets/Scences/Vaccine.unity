@@ -2099,22 +2099,12 @@ Prefab:
     - target: {fileID: 114317363430503854, guid: 53862b2a6de0eb8469d23b8ab0668668,
         type: 2}
       propertyPath: spawnTime
-      value: 0.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114317363430503854, guid: 53862b2a6de0eb8469d23b8ab0668668,
         type: 2}
       propertyPath: start
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114317363430503854, guid: 53862b2a6de0eb8469d23b8ab0668668,
-        type: 2}
-      propertyPath: maxEnemy
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114317363430503854, guid: 53862b2a6de0eb8469d23b8ab0668668,
-        type: 2}
-      propertyPath: spawnWalkerHealth
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53862b2a6de0eb8469d23b8ab0668668, type: 2}

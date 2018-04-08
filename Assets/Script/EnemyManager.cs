@@ -10,7 +10,6 @@ public class EnemyManager : MonoBehaviour
     public float spawnTime = 0.05f;            // How long between each spawn.
     public GameObject[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
     public int maxEnemy = 10;
-	public float spawnWalkerHealth = 5f;
 	public bool start;
 	float timer;
 
@@ -45,7 +44,6 @@ public class EnemyManager : MonoBehaviour
             return;
 
         enemy.GetComponent<walker>().seen = true;
-		enemy.GetComponent<WalkerHealthScript> ().initialHealth = spawnWalkerHealth;
         // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
 		Instantiate(enemy, spawnPoints[spawnPointIndex].transform.position, spawnPoints[spawnPointIndex].transform.rotation);
         currentEnemy++;
