@@ -9,28 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-<<<<<<< HEAD
-  m_RootGameObject: {fileID: 1702864509160312}
+  m_RootGameObject: {fileID: 1246362421176454}
   m_IsPrefabParent: 1
---- !u!1 &1702864509160312
-=======
-  m_RootGameObject: {fileID: 1060122494836012}
-  m_IsPrefabParent: 1
---- !u!1 &1060122494836012
->>>>>>> 6ed0ff01fdb6d16bb1335fb250a790ae9cdd8c4e
+--- !u!1 &1246362421176454
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-<<<<<<< HEAD
-  - component: {fileID: 4458792213592836}
-  - component: {fileID: 114870239790462004}
-=======
-  - component: {fileID: 4635934384667936}
-  - component: {fileID: 114283476489609074}
->>>>>>> 6ed0ff01fdb6d16bb1335fb250a790ae9cdd8c4e
+  - component: {fileID: 4222495950128280}
+  - component: {fileID: 114317363430503854}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -38,49 +27,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
---- !u!4 &4458792213592836
-=======
---- !u!4 &4635934384667936
->>>>>>> 6ed0ff01fdb6d16bb1335fb250a790ae9cdd8c4e
+--- !u!4 &4222495950128280
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1702864509160312}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.619999, y: 1.7999992, z: -26.440002}
-=======
-  m_GameObject: {fileID: 1060122494836012}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
->>>>>>> 6ed0ff01fdb6d16bb1335fb250a790ae9cdd8c4e
+  m_GameObject: {fileID: 1246362421176454}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.44, y: 0.065999985, z: -26.440002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!114 &114870239790462004
-=======
---- !u!114 &114283476489609074
->>>>>>> 6ed0ff01fdb6d16bb1335fb250a790ae9cdd8c4e
+--- !u!114 &114317363430503854
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1702864509160312}
+  m_GameObject: {fileID: 1246362421176454}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c24e5ecbe4f8d3744816266f91a81a12, type: 3}
-=======
-  m_GameObject: {fileID: 1060122494836012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb9f68db6f971c478b05f2c7e287b37, type: 3}
->>>>>>> 6ed0ff01fdb6d16bb1335fb250a790ae9cdd8c4e
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1324840564414774, guid: 7ff2095427d895c4b85502f6debf8587, type: 2}
@@ -88,3 +56,4 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 0}
   maxEnemy: 10
+  start: 1

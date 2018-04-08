@@ -15,22 +15,22 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        //InvokeRepeating("Spawn", spawnTime, spawnTime);
-		spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+        InvokeRepeating("Spawn", spawnTime, spawnTime);
+		//spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
 		start = false;
-
     }
 
 
 	void Update(){
-		//if (start && timer >= spawnTime) {
+        //if (start && timer >= spawnTime) {
 
-		if (start)	Spawn ();
-		//	timer = 0;
-		//} else {
-		//	timer += Time.deltaTime;
-		//}
-	}
+        if (start)	Spawn ();
+        //Spawn();
+        //	timer = 0;
+        //} else {
+        //	timer += Time.deltaTime;
+        //}
+    }
 
     // Update is called once per frame
     void Spawn()
