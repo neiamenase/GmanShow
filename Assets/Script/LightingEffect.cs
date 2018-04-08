@@ -13,6 +13,7 @@ public class LightingEffect : MonoBehaviour {
 	private bool onPlane = false;
 	Text dialogue;
 
+	EnemyManager e;
 
 
 	// Use this for initialization
@@ -25,6 +26,8 @@ public class LightingEffect : MonoBehaviour {
 
 		lightEffect (false);
 		dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponentsInChildren<Text> () [0];
+
+		e = GameObject.Find ("EnemyManager").GetComponent<EnemyManager> ();
 
 	}
 	
@@ -57,6 +60,7 @@ public class LightingEffect : MonoBehaviour {
 			setDirectionalLight ();
 			GameObject.Find ("electronicDoor").SetActive (false);
 			restartGenerator = 2;
+			e.start = true;
 		}
 
 	}

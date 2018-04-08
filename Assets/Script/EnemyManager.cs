@@ -24,7 +24,7 @@ public class EnemyManager : MonoBehaviour
 	void Update(){
         //if (start && timer >= spawnTime) {
 
-        if (start)	Spawn ();
+        //if (start)	Spawn ();
         //Spawn();
         //	timer = 0;
         //} else {
@@ -35,6 +35,9 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Spawn()
     {
+		if (!start)
+			return;
+		
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 		int currentEnemy = GameObject.FindGameObjectsWithTag("Enermy").Length;
         if (currentEnemy > maxEnemy)

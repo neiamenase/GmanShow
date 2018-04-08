@@ -38,7 +38,7 @@ public class CollectVaccine : MonoBehaviour {
 					status = 2;
 					dialogue.text = "Downloading... \nPlease stay near the console.\nTIME: " + System.Math.Round (timeRemaining, 2);
 					timeRemaining = timeRemaining - Time.deltaTime;
-				//	e.start = true;
+					e.start = true;
 					if (timeRemaining < 0f) {
 						jumpScense ();
 					}
