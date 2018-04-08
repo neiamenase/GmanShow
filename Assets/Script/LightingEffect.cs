@@ -28,6 +28,7 @@ public class LightingEffect : MonoBehaviour {
 		dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponentsInChildren<Text> () [0];
 
 		e = GameObject.Find ("EnemyManager").GetComponent<EnemyManager> ();
+		lightEffectSetRadius ();
 
 	}
 	
@@ -50,8 +51,8 @@ public class LightingEffect : MonoBehaviour {
 			} else if (timer > lightOffTime + lightOnTime) {
 				lightEffect (false);
 				timer = 0;
-				lightOnTime = Random.value / 4f;
-				lightOffTime = Random.value + 1f;
+				lightOnTime = Random.value / 2f;
+				lightOffTime = Random.value;
 			}
 
 			timer += Time.deltaTime;
@@ -71,6 +72,16 @@ public class LightingEffect : MonoBehaviour {
 			l.enabled = turnOn;
 		}
 	
+	}
+
+	void lightEffectSetRadius(){
+		for (int i = 0; i < spotlights.Length; i++) {
+			Light l = spotlights [i].GetComponent<Light> ();
+			//l.enabled = turnOn;
+			l.range = 30f;
+			l.intensity = 6f;
+		}
+
 	}
 
 	void setDirectionalLight(){
