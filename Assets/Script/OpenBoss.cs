@@ -36,6 +36,7 @@ public class OpenBoss : MonoBehaviour {
 				boss.SetActive (true);
 				bossScript.start = true;
 				status = 1;
+				dialog.text = "Contamination found in room. Auto-lock applied";
 			}
 		}
 	}
